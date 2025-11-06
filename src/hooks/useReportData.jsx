@@ -21,7 +21,7 @@ export function useReportData(params = {}) {
     const hoy = new Date();
     const firstOfMonth = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
 
-    let mode = "month";
+    let mode = "month";              // mes en curso
     let fecha, from, to;
 
     if (params.fecha) {
@@ -33,14 +33,17 @@ export function useReportData(params = {}) {
       to   = toDate(params.to);
     }
 
+    // helper valor numérico
     const getVal = it => Number(it.total ?? it.valor ?? 0);
 
+    // filtrar según modo
     let filtI = ingresos;
     let filtE = egresos;
 
     if (mode === "single") {
       filtI = ingresos.filter(i => esMismoDia(toDate(i.fecha), fecha));
       filtE = egresos.filter(e => esMismoDia(toDate(e.fecha), fecha));
+      // rango de un día para byDate
       from = fecha;
       to   = fecha;
     }
@@ -54,14 +57,14 @@ export function useReportData(params = {}) {
         return d && d >= from && d <= to;
       });
     }
-    else {
+    else { // month
       filtI = ingresos.filter(i => esMismoMes(toDate(i.fecha), hoy));
       filtE = egresos.filter(e => esMismoMes(toDate(e.fecha), hoy));
       from = firstOfMonth;
       to   = hoy;
     }
 
-    // Acumulado diario con relleno
+    // construir acumulado diario
     const raw = {};
     const addToRaw = (dObj, source) => {
       const d = toDate(source.fecha);
@@ -72,7 +75,7 @@ export function useReportData(params = {}) {
     filtI.forEach(i => addToRaw("ingresos", i));
     filtE.forEach(e => addToRaw("egresos", e));
 
-    // Generar todos los días del rango
+    // Genera todos los días del rango
     const allDays = [];
     let d = new Date(from);
     d.setHours(0,0,0,0);
@@ -83,25 +86,26 @@ export function useReportData(params = {}) {
       d = addDays(d, 1);
     }
 
-    // Completar días faltantes con ceros
+    // Completa los días faltantes con ceros
     const days = allDays.map(name => ({
       name,
       ingresos: raw[name]?.ingresos || 0,
       egresos: raw[name]?.egresos || 0
     }));
 
-    // Ordenar por fecha
+    // Ordena por fecha
     days.sort((a, b) => {
       const da = new Date(a.name.split("/").reverse().join("-"));
       const db = new Date(b.name.split("/").reverse().join("-"));
       return da - db;
     });
 
-    const byDate = days.map(({ name, ingresos, egresos }) => ({
-      name,
-      ingresos,
-      egresos
-    }));
+    let cumI = 0, cumE = 0;
+    const byDate = days.map(({ name, ingresos, egresos }) => {
+      cumI += ingresos;
+      cumE += egresos;
+      return { name, ingresos, egresos };
+    });
 
     // función para armar tortas
     const mkPie = (arr, keys, field) =>

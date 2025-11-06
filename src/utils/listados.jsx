@@ -1,35 +1,69 @@
 // src/utils/listado.jsx
 
 export const tiposIngreso = [
-  "VENTA",
+  "INMUEBLE",
+  "VEHICULO",
+  "SUCURSALES",
   "INVERSIONES",
-  "APORTE DE CAPITAL",
+  "NORMA - MASAJES",
+  "OTROS"
+];
+export const inmuebles = [
+  "DPTO CIUDAD DE LA PAZ",
+  "DPTO CORRIENTES",
+  "DPTO CONESA I",
+  "DPTO CONESA II"
+];
+export const sucursales = [
+  "PRANA",
+  "EQUILIBRIO",
+  "FOUR SEASONS",
+  "MASAJES EN DOMICILIO",
+  "MASAJES A DOMICILIO"
+];
+export const mediosIngreso = [
+  "EFECTIVO",
+  "CHEQUE",
+  "TARJETA DE CREDITO",
+  "TARJETA DE DEBITO",
+  "BILLETERA VIRTUAL",
+  "TRANSFERENCIA",
+  "ACREDITACION",
   "OTROS"
 ];
 export const categoriasIngreso = [
-  "MKT",
-  "OPERACIONES",
-  "LOGISTICO",
-  "COMEX",
-  "SALARIOS",
-  "SERVICIOS",
-  "CAFE EN GRANO",
-  "CAFE MOLIDO",
+  "SERVICIO",
+  "ALQUILER",
+  "INVERSIONES",
   "OTROS"
 ];
 
 export const tiposEgreso = [
-  "OPEX",
-  "EGRESOS UTILIDADES",
-  "1° IMPO SEP 2025",
+  "INMUEBLE",
+  "VEHICULO",
+  "SUCURSALES",
+  "JUBILACION",
+  "GASTOS",
+  "OTROS"
+];
+export const mediosEgreso = [
+  "EFECTIVO",
+  "CHEQUE",
+  "TARJETA DE CREDITO",
+  "TARJETA DE DEBITO",
+  "BILLETERA VIRTUAL",
+  "TRANSFERENCIA",
   "OTROS"
 ];
 export const categoriasEgreso = [
-  "MKT",
-  "OPERACIONES",
-  "LOGISTICO",
-  "COMEX",
-  "SALARIOS",
   "SERVICIOS",
+  "SUELDOS",
+  "PRODUCTOS DE LIMPIEZA",
+  "PRODUCTOS DE MASAJE",
+  "VEHICULO",
+  "SEGUROS",
+  "SUPERMERCADO",
+  "SALIDAS",
+  "REGALOS",
   "OTROS"
 ];

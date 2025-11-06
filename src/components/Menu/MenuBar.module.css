@@ -33,6 +33,10 @@
   white-space: nowrap;
 }
 
+.list li a {
+  text-decoration: none;
+}
+
 .active {
   font-weight: bold;
   color: var(--accent);
@@ -64,8 +68,4 @@
   width: 24px;
   height: 24px;
   object-fit: contain;
-}
-
-a {
-  text-decoration: none;
 }
