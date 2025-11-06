@@ -16,7 +16,7 @@ import {
 } from "firebase/firestore";
 import { endOfMonth } from "date-fns";
 import { FaTrash, FaEdit, FaSave, FaTimes } from "react-icons/fa";
-import styles from "../Egreso/Egreso.module.css";
+import styles from "../Ingreso/Ingreso.module.css";
 
 export default function Egreso() {
   const { t } = useIdioma();
@@ -39,10 +39,10 @@ export default function Egreso() {
   // inline edit
   const [editingId, setEditingId] = useState(null);
   const [editData, setEditData]   = useState({
+    proyecto: "",
     categoria: "",
     tipo: "",
     proveedor: "",
-    descripcion: "",
     total: ""
   });
 
@@ -141,10 +141,10 @@ export default function Egreso() {
           return {
             id:        data.id || docSnap.id,
             fecha:     `${dd}/${mm}/${yyyy}`,    // ← Aquí va la fecha formateada
+            proyecto:  data.proyecto || "",
             categoria: data.categoria || "",
             tipo:      data.tipo      || "",
             proveedor: data.proveedor || "",
-            descripcion: data.descripcion || "",
             total:     data.total     || 0
           };
         });
@@ -206,24 +206,24 @@ export default function Egreso() {
   const startEdit  = row => {
     setEditingId(row.id);
     setEditData({
+      proyecto: row.proyecto,
       categoria: row.categoria,
       tipo:      row.tipo,
       proveedor: row.proveedor,
-      descripcion: row.descripcion,
       total:     row.total.toString()
     });
   };
   const cancelEdit = () => {
     setEditingId(null);
-    setEditData({ categoria: "", tipo: "", proveedor: "", descripcion: "", total: "" });
+    setEditData({ proyecto: "", categoria: "", tipo: "", proveedor: "", total: "" });
   };
   const saveEdit   = async id => {
     const ref = doc(db, "egresos", id);
     await updateDoc(ref, {
+      proyecto:  editData.proyecto,
       categoria: editData.categoria,
       tipo:      editData.tipo,
       proveedor: editData.proveedor,
-      descripcion: editData.descripcion,
       total:     Number(editData.total)
     });
     setEgresos(prev =>
@@ -361,10 +361,10 @@ export default function Egreso() {
               />
             </th>
             <th>{t("fecha")}</th>
+            <th>{t("proyecto")}</th>
             <th>{t("categoria")}</th>
             <th>{t("tipo")}</th>
             <th>{t("proveedor")}</th>
-            <th>{t("descripcion")}</th>
             <th>{t("total")}</th>
             <th>{t("acciones")}</th>
           </tr>
@@ -380,6 +380,19 @@ export default function Egreso() {
                 />
               </td>
               <td>{r.fecha}</td>
+              <td>
+                {editingId === r.id ? (
+                  <input
+                    className={styles.editInput}
+                    value={editData.proyecto}
+                    onChange={e =>
+                      setEditData(d => ({ ...d, proyecto: e.target.value }))
+                    }
+                  />
+                ) : (
+                  r.proyecto
+                )}
+              </td>
               <td>
                 {editingId === r.id ? (
                   <input
@@ -417,19 +430,6 @@ export default function Egreso() {
                   />
                 ) : (
                   r.proveedor
-                )}
-              </td>
-              <td>
-                {editingId === r.id ? (
-                  <input
-                    className={styles.editInput}
-                    value={editData.descripcion}
-                    onChange={e =>
-                      setEditData(d => ({ ...d, descripcion: e.target.value }))
-                    }
-                  />
-                ) : (
-                  r.descripcion
                 )}
               </td>
               <td>
