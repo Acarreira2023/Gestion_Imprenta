@@ -1,61 +1,100 @@
-/* src/pages/Ingresar/Ingresar.module.css */
+/* src/pages/Ingresar/IngresoForm.module.css */
 
-.container {
+.formulario {
+  max-width: 600px;
+  margin: auto;
+  padding: 1rem;
+  background: var(--bg-alt);
+  border-radius: var(--radius);
+}
+
+.formulario h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.field {
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 2rem;
 }
 
-.title {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  text-align: center;
+.field label {
+  margin-bottom: 0.3rem;
+  color: var(--fg);
 }
 
-.cards {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 2rem;
-}
-
-.card {
-  flex: 1 1 200px;
-  max-width: 240px;
-  background-color: var(--bg-alt);
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.5rem;
   border: 1px solid var(--fg);
   border-radius: var(--radius);
-  padding: 1.5rem;
-  text-align: center;
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  background-color: var(--hover-bg);
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
 }
 
-.icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  display: block;
-  color: var(--accent);
-}
-
-.back {
-  padding: 0.5rem 1rem;
-  background-color: var(--accent);
+.botonArena {
+  padding: 0.7rem;
+  width: 100%;
+  background: var(--accent);
   color: #fff;
   border: none;
   border-radius: var(--radius);
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background 0.2s;
 }
 
-.back:hover {
-  background-color: var(--accent-focus);
+.botonArena:hover {
+  background: var(--accent-focus);
+}
+
+.volver {
+  padding: 0.7rem;
+  width: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid var(--fg);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.volver:hover {
+  background: var(--hover-bg);
+}
+
+.prefijoInput {
+  display: flex;
+  align-items: center;
+  border: 1px solid #666; /* sin borde visible */
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(100, 100, 100, 0.2); /* sombra de contorno suave */
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.prefijoInput:focus-within {
+  box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.4); /* sombra azul al enfocar */
+}
+
+.prefijo {
+  font-weight: bold;
+  margin-right: 0.4rem;
+  color: #444;
+}
+
+.prefijoInput input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 1rem;
+  background-color: transparent;
 }
