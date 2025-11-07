@@ -22,10 +22,9 @@ export async function exportIngresos() {
       : "";
     return {
       Fecha:       fecha,
+      Proyecto:    d.proyecto    || "",
+      Cliente:     d.cliente     || "",
       Tipo:        d.tipo        || "",
-      Inmuebles:    d.inmuebles    || "",
-      Sucursales:   d.sucursales   || "",
-      Medio:       d.medio       || "",
       Categoría:   d.categoria   || "",
       Cantidad:    d.cantidad  != null ? d.cantidad : "",
       "Nro. Doc":  d.nroDoc      || "",
@@ -35,8 +34,7 @@ export async function exportIngresos() {
   });
 
   const header = [
-    "Fecha","Tipo","Inmuebles","Sucursales","Medio",
-    "Categoría","Cantidad","Nro. Doc","Descripción","Total"
+    "Fecha","Proyecto","Cliente","Tipo","Categoría","Cantidad","Nro. Doc","Descripción","Total"
   ];
 
   // genera worksheet a partir de JSON
@@ -71,10 +69,9 @@ export async function exportEgresos() {
       : "";
     return {
       Fecha:        fecha,
+      Proyecto:     d.proyecto     || "",
+      Cliente:      d.cliente      || "",
       Tipo:         d.tipo         || "",
-      Inmuebles:    d.inmuebles    || "",
-      Sucursales:   d.sucursales   || "",
-      "Medio Pago": d.medioPago    || "",
       Categoría:    d.categoria    || "",
       "Nro. Doc":   d.nroDoc       || "",
       Descripción:  d.descripcion  || "",
@@ -84,8 +81,7 @@ export async function exportEgresos() {
   });
 
   const header = [
-    "Fecha","Tipo","Inmueble","Sucursal","Medio Pago",
-    "Categoría","Nro. Doc","Descripción","Proveedor","Total"
+    "Fecha","Proyecto","Cliente","Tipo","Categoría","Nro. Doc","Descripción","Proveedor","Total"
   ];
 
   const ws = XLSX.utils.json_to_sheet(data, {

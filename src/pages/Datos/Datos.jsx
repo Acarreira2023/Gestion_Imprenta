@@ -106,9 +106,9 @@ export default function Datos() {
           return {
             id:        d.id,
             fecha:     date.toLocaleDateString(),
+            proyecto:  data.proyecto ?? "",
             categoria: data.categoria ?? data["categoría"] ?? "",
             tipo:      data.tipo ?? "",
-            proveedor: data.proveedor ?? data.provider ?? "",
             total:     data.total ?? data.valor ?? 0
           };
         };
@@ -290,10 +290,10 @@ export default function Datos() {
                     />
                   </th>
                   <th>{t("fecha")}</th>
+                  <th>{t("proyecto")}</th>
                   <th>{t("categoria")}</th>
                   <th>{t("tipo")}</th>
-                  <th>{t("proveedor")}</th>
-                  <th>{t("Total")}</th>
+                  <th>{t("total")}</th>
                   <th>{t("acciones")}</th>
                 </tr>
               </thead>
@@ -308,9 +308,9 @@ export default function Datos() {
                       />
                     </td>
                     <td>{row.fecha}</td>
+                    <td>{row.proyecto}</td>
                     <td>{row.categoria}</td>
                     <td>{row.tipo}</td>
-                    <td>{row.proveedor}</td>
                     <td>${row.total}</td>
                     <td>
                       <button
