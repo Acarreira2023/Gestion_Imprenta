@@ -25,16 +25,16 @@ export async function exportIngresos() {
       Proyecto:    d.proyecto    || "",
       Cliente:     d.cliente     || "",
       Tipo:        d.tipo        || "",
-      Categoría:   d.categoria   || "",
+      Categoria:   d.categoria   || "",
       Cantidad:    d.cantidad  != null ? d.cantidad : "",
       "Nro. Doc":  d.nroDoc      || "",
-      Descripción: d.descripcion || "",
+      Descripcion: d.descripcion || "",
       Total:       d.total       || 0
     };
   });
 
   const header = [
-    "Fecha","Proyecto","Cliente","Tipo","Categoría","Cantidad","Nro. Doc","Descripción","Total"
+    "Fecha","Proyecto","Cliente","Tipo","Categoria","Cantidad","Nro. Doc","Descripcion","Total"
   ];
 
   // genera worksheet a partir de JSON
@@ -72,16 +72,16 @@ export async function exportEgresos() {
       Proyecto:     d.proyecto     || "",
       Cliente:      d.cliente      || "",
       Tipo:         d.tipo         || "",
-      Categoría:    d.categoria    || "",
+      Categoria:    d.categoria    || "",
       "Nro. Doc":   d.nroDoc       || "",
-      Descripción:  d.descripcion  || "",
+      Descripcion:  d.descripcion  || "",
       Proveedor:    d.proveedor    || "",
       Total:        d.total        || 0
     };
   });
 
   const header = [
-    "Fecha","Proyecto","Cliente","Tipo","Categoría","Nro. Doc","Descripción","Proveedor","Total"
+    "Fecha","Proyecto","Cliente","Tipo","Categoria","Nro. Doc","Descripcion","Proveedor","Total"
   ];
 
   const ws = XLSX.utils.json_to_sheet(data, {

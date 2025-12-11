@@ -107,7 +107,7 @@ export default function Datos() {
             id:        d.id,
             fecha:     date.toLocaleDateString(),
             proyecto:  data.proyecto ?? "",
-            categoria: data.categoria ?? data["categoría"] ?? "",
+            categoria: data.categoria ?? data["categoria"] ?? "",
             tipo:      data.tipo ?? "",
             total:     data.total ?? data.valor ?? 0
           };

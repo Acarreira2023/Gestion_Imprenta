@@ -1,4 +1,4 @@
-// src/pages/Ingresos.jsx
+// src/pages/Ingresos/Ingresos.jsx
 import React from "react";
 import { useIdioma } from "../../context/IdiomaContext";
 import ResumenEconomico from "../../components/ResumenEconomico/ResumenEconomico";
